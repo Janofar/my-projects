@@ -23,6 +23,8 @@ This project is a backend dashboard designed for managing user data and viewing 
 ### Role Management
 - **POST** `/roles/add` - Add a new role
 
+## Note
+An admin and one basic user are added by default
 
 ## Technologies Used
 - **Node.js**: Server-side JavaScript runtime
