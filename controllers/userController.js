@@ -55,15 +55,21 @@ exports.login = async (req, res) => {
       },
       jwtSecretKey
     );
-
-    res.json({ message: "Login successful", token });
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Strict',
+      maxAge: 3600000
+    });
+    res.json({ message: "Login successful" });
   } catch (error) {
     res.status(500).json({ message: "Error logging in", error });
   }
 };
 
 exports.logout = (req, res) => {
-  res.json({ message: "Logout successful" });
+  res.clearCookie('token');
+  return res.status(200).render('home');
 };
 
 exports.getAllUsers = async (req, res) => {
@@ -112,10 +118,10 @@ exports.dashboard = async (req, res) => {
     }
 
     if (user.isAdmin) {
-      return res.status(200).json({ message: "Welcome to admin dashboard" });
+      return res.status(200).render('adminDashboard', { user });
     }
 
-    return res.status(200).json({ message: "Welcome to user dashboard" });
+    return res.status(200).render('userDashboard', { user });
 
   } catch (error) {
     res.status(500).json({ message: "Error fetching user role", error });

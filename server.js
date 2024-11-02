@@ -8,6 +8,9 @@ const roleRoutes = require("./routes/roleRoutes");
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+const path = require('path');
+const cookieParser = require('cookie-parser');
+
 const app = express();
 
 app.use(helmet());
@@ -28,7 +31,12 @@ const appLimiter = rateLimit({
 
 app.use(appLimiter); 
 
+app.use(cookieParser());
+
 app.use(bodyParser.json());
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 //connect database
 connectDB();
