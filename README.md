@@ -9,16 +9,20 @@ This project is a backend dashboard designed for managing user data and viewing 
 - Role-based access control
 - Secure and scalable architecture
 
-## Api end points
-User Management
-- GET /users - Get all users
-- GET /users/:id - Get user by ID
-- PUT /users/:id - Update user by ID
-- DELETE /users/:id - Delete user by ID
-Dashboard
-- GET /dashboard - Get user-specific dashboard data
-Add Role
-- GET /roles/add - Add role 
+## API Endpoints
+
+### User Management
+- **GET** `/users` - Get all users
+- **GET** `/users/:id` - Get user by ID
+- **PUT** `/users/:id` - Update user by ID
+- **DELETE** `/users/:id` - Delete user by ID
+
+### Dashboard
+- **GET** `/dashboard` - Get user-specific dashboard data
+
+### Role Management
+- **POST** `/roles/add` - Add a new role
+
 
 ## Technologies Used
 - **Node.js**: Server-side JavaScript runtime
