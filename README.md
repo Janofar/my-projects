@@ -18,7 +18,7 @@ This project is a backend dashboard designed for managing user data and viewing 
 - **DELETE** `/users/:id` - Delete user by ID
 
 ### Dashboard
-- **GET** `/dashboard` - Get user-specific dashboard data
+- **GET** `users/dashboard` - Get user-specific dashboard data
 
 ### Role Management
 - **POST** `/roles/add` - Add a new role
