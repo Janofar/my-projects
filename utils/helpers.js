@@ -51,7 +51,7 @@ exports.createDefaultUsers = async () => {
                 name: "Test user1",
                 email: 'testuser1@gmail.com',
                 password: await bcrypt.hash("user1password", 10),
-                isAdmin: true,
+                isAdmin: false,
                 role: userRole._id,
             });
 

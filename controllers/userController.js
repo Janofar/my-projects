@@ -18,7 +18,7 @@ exports.register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ name, email, password: hashedPassword, role: role._id });
-    console.log(newUser)
+
     await newUser.save().catch(err => {
       console.error("Save error:", err);
       throw err;
@@ -37,13 +37,11 @@ exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ email }).populate("role");
     if (!user) {
-      console.error("User not found");
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      console.error("Password comparison failed");
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
@@ -60,7 +58,6 @@ exports.login = async (req, res) => {
 
     res.json({ message: "Login successful", token });
   } catch (error) {
-    console.error("Error during login:", error);
     res.status(500).json({ message: "Error logging in", error });
   }
 };
