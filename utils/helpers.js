@@ -9,22 +9,13 @@ exports.createDefaultUsers = async () => {
         const adminUser = await User.findOne({ isAdmin: true });
 
         if (!adminUser) {
-            let adminRole = await Role.findOne({ name: "admin" });
-            if (!adminRole) {
-                adminRole = new Role({
-                    name: "admin",
-                    permissions: [],
-                });
-                await adminRole.save();
-                console.log("Admin role created successfully.");
-            }
 
             const newAdmin = new User({
                 name: "adminUser",
                 email: 'admin@gmail.com',
                 password: await bcrypt.hash("securePassword", 10),
                 isAdmin: true,
-                role: adminRole._id,
+                role: null,
             });
 
             await newAdmin.save();

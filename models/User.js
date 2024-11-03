@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   },
   password: { type: String, required: true, minlength: 3, maxlength: 1024 },
   isAdmin: { type: Boolean, default: false },
-  role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
+  role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" , default : null},
 },
   { timestamps: true });
 
