@@ -19,7 +19,7 @@ exports.checkPermission = (requiredPermission) => {
     try {
       const user = await User.findById(req.user.id).populate("role");
 
-      if (!user || !user.role) {
+      if (!user) {
         return res.status(403).json({ message: "Access denied" });
       }
 
